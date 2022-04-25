@@ -1,0 +1,623 @@
+directive @cypher(
+  statement: String
+) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+directive @relation(
+  name: String
+  direction: _RelationDirections
+  from: String
+  to: String
+) on FIELD_DEFINITION | OBJECT
+directive @additionalLabels(labels: [String]) on OBJECT
+directive @MutationMeta(
+  relationship: String
+  from: String
+  to: String
+) on FIELD_DEFINITION
+directive @neo4j_ignore on FIELD_DEFINITION
+directive @id on FIELD_DEFINITION
+directive @unique on FIELD_DEFINITION
+directive @index on FIELD_DEFINITION
+directive @search(index: String) on FIELD_DEFINITION
+# Exposes a URL that specifies the behaviour of this scalar.
+directive @specifiedBy(
+  # The URL that specifies the behaviour of this scalar.
+  url: String!
+) on SCALAR
+input _ActorFilter {
+  AND: [_ActorFilter!]
+  OR: [_ActorFilter!]
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_regexp: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_regexp: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  movies: _MovieFilter
+  movies_not: _MovieFilter
+  movies_in: [_MovieFilter!]
+  movies_not_in: [_MovieFilter!]
+  movies_some: _MovieFilter
+  movies_none: _MovieFilter
+  movies_single: _MovieFilter
+  movies_every: _MovieFilter
+}
+
+enum _ActorOrdering {
+  id_asc
+  id_desc
+  name_asc
+  name_desc
+  _id_asc
+  _id_desc
+}
+
+input _GenreFilter {
+  AND: [_GenreFilter!]
+  OR: [_GenreFilter!]
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_regexp: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  movies: _MovieFilter
+  movies_not: _MovieFilter
+  movies_in: [_MovieFilter!]
+  movies_not_in: [_MovieFilter!]
+  movies_some: _MovieFilter
+  movies_none: _MovieFilter
+  movies_single: _MovieFilter
+  movies_every: _MovieFilter
+}
+
+enum _GenreOrdering {
+  name_asc
+  name_desc
+  _id_asc
+  _id_desc
+}
+
+input _MovieFilter {
+  AND: [_MovieFilter!]
+  OR: [_MovieFilter!]
+  movieId: ID
+  movieId_not: ID
+  movieId_in: [ID!]
+  movieId_not_in: [ID!]
+  movieId_regexp: ID
+  movieId_contains: ID
+  movieId_not_contains: ID
+  movieId_starts_with: ID
+  movieId_not_starts_with: ID
+  movieId_ends_with: ID
+  movieId_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_regexp: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  year: Int
+  year_not: Int
+  year_in: [Int!]
+  year_not_in: [Int!]
+  year_lt: Int
+  year_lte: Int
+  year_gt: Int
+  year_gte: Int
+  plot: String
+  plot_not: String
+  plot_in: [String!]
+  plot_not_in: [String!]
+  plot_regexp: String
+  plot_contains: String
+  plot_not_contains: String
+  plot_starts_with: String
+  plot_not_starts_with: String
+  plot_ends_with: String
+  plot_not_ends_with: String
+  poster: String
+  poster_not: String
+  poster_in: [String!]
+  poster_not_in: [String!]
+  poster_regexp: String
+  poster_contains: String
+  poster_not_contains: String
+  poster_starts_with: String
+  poster_not_starts_with: String
+  poster_ends_with: String
+  poster_not_ends_with: String
+  imdbRating: Float
+  imdbRating_not: Float
+  imdbRating_in: [Float!]
+  imdbRating_not_in: [Float!]
+  imdbRating_lt: Float
+  imdbRating_lte: Float
+  imdbRating_gt: Float
+  imdbRating_gte: Float
+  ratings: _MovieRatedFilter
+  ratings_not: _MovieRatedFilter
+  ratings_in: [_MovieRatedFilter!]
+  ratings_not_in: [_MovieRatedFilter!]
+  ratings_some: _MovieRatedFilter
+  ratings_none: _MovieRatedFilter
+  ratings_single: _MovieRatedFilter
+  ratings_every: _MovieRatedFilter
+  genres: _GenreFilter
+  genres_not: _GenreFilter
+  genres_in: [_GenreFilter!]
+  genres_not_in: [_GenreFilter!]
+  genres_some: _GenreFilter
+  genres_none: _GenreFilter
+  genres_single: _GenreFilter
+  genres_every: _GenreFilter
+  actors: _ActorFilter
+  actors_not: _ActorFilter
+  actors_in: [_ActorFilter!]
+  actors_not_in: [_ActorFilter!]
+  actors_some: _ActorFilter
+  actors_none: _ActorFilter
+  actors_single: _ActorFilter
+  actors_every: _ActorFilter
+}
+
+enum _MovieOrdering {
+  movieId_asc
+  movieId_desc
+  title_asc
+  title_desc
+  year_asc
+  year_desc
+  plot_asc
+  plot_desc
+  poster_asc
+  poster_desc
+  imdbRating_asc
+  imdbRating_desc
+  _id_asc
+  _id_desc
+}
+
+input _MovieRatedFilter {
+  AND: [_MovieRatedFilter!]
+  OR: [_MovieRatedFilter!]
+  rating: Float
+  rating_not: Float
+  rating_in: [Float!]
+  rating_not_in: [Float!]
+  rating_lt: Float
+  rating_lte: Float
+  rating_gt: Float
+  rating_gte: Float
+  created: _Neo4jDateTimeInput
+  created_not: _Neo4jDateTimeInput
+  created_in: [_Neo4jDateTimeInput!]
+  created_not_in: [_Neo4jDateTimeInput!]
+  created_lt: _Neo4jDateTimeInput
+  created_lte: _Neo4jDateTimeInput
+  created_gt: _Neo4jDateTimeInput
+  created_gte: _Neo4jDateTimeInput
+  User: _UserFilter
+}
+
+type _MovieRatings {
+  rating: Float
+  created: _Neo4jDateTime
+  # Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id)
+  # of this relationship.
+  _id: String
+  # Field for the User node this RATED [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from.
+  User: User
+}
+
+# Generated Date object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries).
+type _Neo4jDate {
+  year: Int
+  month: Int
+  day: Int
+  # Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries)
+  # Date value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring)
+  # Cypher function.
+  formatted: String
+}
+
+# Generated Date input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments).
+input _Neo4jDateInput {
+  year: Int
+  month: Int
+  day: Int
+  # Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations)
+  # Date value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/date/#functions-date-create-string).
+  formatted: String
+}
+
+# Generated DateTime object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries).
+type _Neo4jDateTime {
+  year: Int
+  month: Int
+  day: Int
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  timezone: String
+  # Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries)
+  # DateTime value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring)
+  # Cypher function.
+  formatted: String
+}
+
+# Generated DateTime input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments).
+input _Neo4jDateTimeInput {
+  year: Int
+  month: Int
+  day: Int
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  timezone: String
+  # Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations)
+  # DateTime value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/datetime/#functions-datetime-create-string).
+  formatted: String
+}
+
+# Generated LocalDateTime object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries).
+type _Neo4jLocalDateTime {
+  year: Int
+  month: Int
+  day: Int
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  # Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries)
+  # LocalDateTime value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring)
+  # Cypher function.
+  formatted: String
+}
+
+# Generated LocalDateTime input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments).
+input _Neo4jLocalDateTimeInput {
+  year: Int
+  month: Int
+  day: Int
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  # Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations)
+  # LocalDateTime value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/localdatetime/#functions-localdatetime-create-string).
+  formatted: String
+}
+
+# Generated LocalTime object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries).
+type _Neo4jLocalTime {
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  # Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries)
+  # LocalTime value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring)
+  # Cypher function.
+  formatted: String
+}
+
+# Generated LocalTime input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments).
+input _Neo4jLocalTimeInput {
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  # Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations)
+  # LocalTime value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/localtime/#functions-localtime-create-string).
+  formatted: String
+}
+
+# Generated Point object type for Neo4j [Spatial fields](https://grandstack.io/docs/graphql-spatial-types#using-point-in-queries).
+type _Neo4jPoint {
+  x: Float
+  y: Float
+  z: Float
+  longitude: Float
+  latitude: Float
+  height: Float
+  crs: String
+  srid: Int
+}
+
+input _Neo4jPointDistanceFilter {
+  point: _Neo4jPointInput!
+  distance: Float!
+}
+
+# Generated Point input object for Neo4j [Spatial field arguments](https://grandstack.io/docs/graphql-spatial-types/#point-query-arguments).
+input _Neo4jPointInput {
+  x: Float
+  y: Float
+  z: Float
+  longitude: Float
+  latitude: Float
+  height: Float
+  crs: String
+  srid: Int
+}
+
+# Generated Time object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries).
+type _Neo4jTime {
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  timezone: String
+  # Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries)
+  # Time value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring)
+  # Cypher function.
+  formatted: String
+}
+
+# Generated Time input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments).
+input _Neo4jTimeInput {
+  hour: Int
+  minute: Int
+  second: Int
+  millisecond: Int
+  microsecond: Int
+  nanosecond: Int
+  timezone: String
+  # Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations)
+  # Time value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/time/#functions-time-create-string).
+  formatted: String
+}
+
+enum _RatedOrdering {
+  rating_asc
+  rating_desc
+  created_asc
+  created_desc
+  _id_asc
+  _id_desc
+}
+
+enum _RelationDirections {
+  IN
+  OUT
+}
+
+input _UserFilter {
+  AND: [_UserFilter!]
+  OR: [_UserFilter!]
+  userId: ID
+  userId_not: ID
+  userId_in: [ID!]
+  userId_not_in: [ID!]
+  userId_regexp: ID
+  userId_contains: ID
+  userId_not_contains: ID
+  userId_starts_with: ID
+  userId_not_starts_with: ID
+  userId_ends_with: ID
+  userId_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_regexp: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  rated: _UserRatedFilter
+  rated_not: _UserRatedFilter
+  rated_in: [_UserRatedFilter!]
+  rated_not_in: [_UserRatedFilter!]
+  rated_some: _UserRatedFilter
+  rated_none: _UserRatedFilter
+  rated_single: _UserRatedFilter
+  rated_every: _UserRatedFilter
+}
+
+enum _UserOrdering {
+  userId_asc
+  userId_desc
+  name_asc
+  name_desc
+  _id_asc
+  _id_desc
+}
+
+type _UserRated {
+  rating: Float
+  created: _Neo4jDateTime
+  # Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id)
+  # of this relationship.
+  _id: String
+  # Field for the Movie node this RATED [relationship](https://grandstack.io/docs/graphql-relationship-types) is going to.
+  Movie: Movie
+}
+
+input _UserRatedFilter {
+  AND: [_UserRatedFilter!]
+  OR: [_UserRatedFilter!]
+  rating: Float
+  rating_not: Float
+  rating_in: [Float!]
+  rating_not_in: [Float!]
+  rating_lt: Float
+  rating_lte: Float
+  rating_gt: Float
+  rating_gte: Float
+  created: _Neo4jDateTimeInput
+  created_not: _Neo4jDateTimeInput
+  created_in: [_Neo4jDateTimeInput!]
+  created_not_in: [_Neo4jDateTimeInput!]
+  created_lt: _Neo4jDateTimeInput
+  created_lte: _Neo4jDateTimeInput
+  created_gt: _Neo4jDateTimeInput
+  created_gte: _Neo4jDateTimeInput
+  Movie: _MovieFilter
+}
+
+type Actor {
+  id: ID!
+  name: String
+  movies(
+    first: Int
+    offset: Int
+    orderBy: [_MovieOrdering]
+    filter: _MovieFilter
+  ): [Movie]
+  # Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node.
+  _id: String
+}
+
+type Genre {
+  name: String
+  movies(
+    first: Int
+    offset: Int
+    orderBy: [_MovieOrdering]
+    filter: _MovieFilter
+  ): [Movie]
+  # Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node.
+  _id: String
+}
+
+type Movie {
+  movieId: ID!
+  title: String
+  year: Int
+  plot: String
+  poster: String
+  imdbRating: Float
+  ratings(
+    first: Int
+    offset: Int
+    orderBy: [_RatedOrdering]
+    filter: _MovieRatedFilter
+  ): [_MovieRatings]
+  genres(
+    first: Int
+    offset: Int
+    orderBy: [_GenreOrdering]
+    filter: _GenreFilter
+  ): [Genre]
+  actors(
+    first: Int
+    offset: Int
+    orderBy: [_ActorOrdering]
+    filter: _ActorFilter
+  ): [Actor]
+  # Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node.
+  _id: String
+}
+
+type Query {
+  # [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Movie type nodes.
+  Movie(
+    movieId: ID
+    title: String
+    year: Int
+    plot: String
+    poster: String
+    imdbRating: Float
+    _id: String
+    first: Int
+    offset: Int
+    orderBy: [_MovieOrdering]
+    filter: _MovieFilter
+  ): [Movie]
+  # [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Genre type nodes.
+  Genre(
+    name: String
+    _id: String
+    first: Int
+    offset: Int
+    orderBy: [_GenreOrdering]
+    filter: _GenreFilter
+  ): [Genre]
+  # [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Actor type nodes.
+  Actor(
+    id: ID
+    name: String
+    _id: String
+    first: Int
+    offset: Int
+    orderBy: [_ActorOrdering]
+    filter: _ActorFilter
+  ): [Actor]
+  # [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for User type nodes.
+  User(
+    userId: ID
+    name: String
+    _id: String
+    first: Int
+    offset: Int
+    orderBy: [_UserOrdering]
+    filter: _UserFilter
+  ): [User]
+}
+
+type Rated {
+  from: User
+  to: Movie
+  rating: Float
+  created: _Neo4jDateTime
+}
+
+type User {
+  userId: ID!
+  name: String
+  rated(
+    first: Int
+    offset: Int
+    orderBy: [_RatedOrdering]
+    filter: _UserRatedFilter
+  ): [_UserRated]
+  recommendedMovies(first: Int, offset: Int, orderBy: [_MovieOrdering]): [Movie]
+  # Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node.
+  _id: String
+}
+
