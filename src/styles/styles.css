@@ -1,0 +1,102 @@
+body {
+    font-family: "Arial";
+
+}
+
+.search-input {
+    border-radius: 5px;
+    margin: 0px 10px 0px 10px;
+    height: 25px;
+}
+
+.search-button {
+    border: none;
+    margin: 0px 10px 0px 10px;
+    padding: 25px;
+    color: white;
+    background-color: purple;
+
+}
+
+.flex-row-container--centered {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.heading-main-page {
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-poster-image {
+    width: 230px;
+    margin: 19px;
+}
+
+.card-title {
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.movie-list-wrapper {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+}
+
+.movie-card {
+    border: 1px solid grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie-card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.movie-card-details p {
+    font-size: 12px;
+}
+
+.movie-card-details ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.imdb-rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-weight: bold;
+    font-family: "American Typewriter";
+    align-items: center;
+}
+
+p.small-details {
+    font-size: 10px;
+    color: dimgrey;
+}
+
+.list-check-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.search-input-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
