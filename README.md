@@ -15,6 +15,7 @@ John Johnson hosts a weekly movie event with his local Tom Cruise Fan club calle
 ### Tech details
 - GraphQL Endpoint: https://tmdb-one-blue.vercel.app/
 - GraphQL Playground: https://www.graphqlbin.com/v2/new (enter endpoint above)
+- Images path: https://image.tmdb.org/t/p/w500/
 
 ### If you encounter issues with the schema above
 Sometimes the endpoint above may encounter timeout issues set by the Movie Database if too many queries are hit at once, please let us know if you encounter any problems
